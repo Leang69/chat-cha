@@ -1,0 +1,139 @@
+body {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  ::-webkit-scrollbar {
+    background: rgb(141, 141, 141);
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(3, 10, 44);
+    width: 8px;
+  }
+  .sideBar {
+    padding: 0;
+    width: 20%;
+    height: 100vh;
+    background-color: rgb(3, 10, 44);
+    color: rgb(204, 204, 204);
+    .search {
+      width: 93%;
+      height: 5vh;
+      margin: 0 auto;
+      padding: 3%;
+      display: flex;
+      align-items: center;
+      input {
+        width: 97%;
+        height: 100%;
+        border: 1.5px solid rgb(109, 109, 109);
+        border-radius: 10px;
+      }
+    }
+    .chatHistory {
+      height: 92vh;
+      overflow-y: scroll;
+      .chatPerson:hover {
+        background-color: rgb(78, 78, 78);
+      }
+      .chatPerson.clicked {
+        background-color: rgb(8, 25, 105);
+      }
+      .chatPerson {
+        display: flex;
+        margin: 0;
+        padding: 3%;
+        justify-content: left;
+        align-items: center;
+        .chatHistory_profile {
+          height: 15%;
+          width: 15%;
+          margin-right: 2%;
+        }
+        .info {
+          flex-grow: 1;
+          margin-left: 3%;
+          h3 {
+            margin: 0;
+          }
+          h4 {
+            margin: 3% 0 0 0;
+          }
+        }
+      }
+    }
+  }
+  .mainContent {
+    flex-grow: 1;
+    .chat {
+      .chartBar {
+        background-color: #151d38;
+        color: rgb(204, 204, 204);
+        display: flex;
+        height: 7.5vh;
+        padding: 0;
+        margin: 0;
+        justify-content: left;
+        align-items: center;
+        list-style: none;
+        .chatPersonProfile {
+          height: 10%;
+          width: 10%;
+        }
+        .chatPersonName {
+          padding: 0 2vw;
+        }
+      }
+      .chating {
+        padding: 1vh 2vw 1vh 2vw;
+        height: 85.5vh;
+        overflow-y: scroll;
+        scrollbar-color: rgb(3, 10, 44) rgb(141, 141, 141);
+        scrollbar-width: thin;
+        background-color: #182140;
+        .chating_profile {
+          width: 3%;
+          height: 3%;
+        }
+        .message {
+          background-color: rgb(68, 83, 155);
+          color: rgb(255, 255, 255);
+          max-width: 50%;
+          min-width: 10%;
+          padding: 0.5%;
+          border: 1.5px solid rgb(60, 78, 102);
+          border-radius: 10px;
+
+          .header {
+            margin: 0;
+            color: rgb(217, 209, 245);
+          }
+          .content {
+            margin-top: 2px;
+            margin-bottom: 2px;
+          }
+        }
+        .they {
+          display: flex;
+          justify-content: start;
+          .chating_profile {
+            align-self: flex-end;
+          }
+        }
+        .you {
+          display: flex;
+          justify-content: end;
+          flex-direction: row-reverse;
+          .chating_profile {
+            align-self: flex-end;
+          }
+        }
+      }
+      .input-chart {
+        height: 5vh;
+        background: rgb(60, 78, 102);
+      }
+    }
+  }
+}

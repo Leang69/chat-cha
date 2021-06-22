@@ -1,0 +1,199 @@
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body ::-webkit-scrollbar {
+  background: #8d8d8d;
+  width: 8px;
+}
+
+body ::-webkit-scrollbar-thumb {
+  background-color: #030a2c;
+  width: 8px;
+}
+
+body .sideBar {
+  padding: 0;
+  width: 20%;
+  height: 100vh;
+  background-color: #030a2c;
+  color: #cccccc;
+}
+
+body .sideBar .search {
+  width: 93%;
+  height: 5vh;
+  margin: 0 auto;
+  padding: 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .sideBar .search input {
+  width: 97%;
+  height: 100%;
+  border: 1.5px solid #6d6d6d;
+  border-radius: 10px;
+}
+
+body .sideBar .chatHistory {
+  height: 92vh;
+  overflow-y: scroll;
+}
+
+body .sideBar .chatHistory .chatPerson:hover {
+  background-color: #4e4e4e;
+}
+
+body .sideBar .chatHistory .chatPerson.clicked {
+  background-color: #081969;
+}
+
+body .sideBar .chatHistory .chatPerson {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 3%;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .sideBar .chatHistory .chatPerson .chatHistory_profile {
+  height: 15%;
+  width: 15%;
+  margin-right: 2%;
+}
+
+body .sideBar .chatHistory .chatPerson .info {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin-left: 3%;
+}
+
+body .sideBar .chatHistory .chatPerson .info h3 {
+  margin: 0;
+}
+
+body .sideBar .chatHistory .chatPerson .info h4 {
+  margin: 3% 0 0 0;
+}
+
+body .mainContent {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+body .mainContent .chat .chartBar {
+  background-color: #151d38;
+  color: #cccccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 7.5vh;
+  padding: 0;
+  margin: 0;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+}
+
+body .mainContent .chat .chartBar .chatPersonProfile {
+  height: 10%;
+  width: 10%;
+}
+
+body .mainContent .chat .chartBar .chatPersonName {
+  padding: 0 2vw;
+}
+
+body .mainContent .chat .chating {
+  padding: 1vh 2vw 1vh 2vw;
+  height: 85.5vh;
+  overflow-y: scroll;
+  scrollbar-color: #030a2c #8d8d8d;
+  scrollbar-width: thin;
+  background-color: #182140;
+}
+
+body .mainContent .chat .chating .chating_profile {
+  width: 3%;
+  height: 3%;
+}
+
+body .mainContent .chat .chating .message {
+  background-color: #44539b;
+  color: white;
+  max-width: 50%;
+  min-width: 10%;
+  padding: 0.5%;
+  border: 1.5px solid #3c4e66;
+  border-radius: 10px;
+}
+
+body .mainContent .chat .chating .message .header {
+  margin: 0;
+  color: #d9d1f5;
+}
+
+body .mainContent .chat .chating .message .content {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+body .mainContent .chat .chating .they {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+body .mainContent .chat .chating .they .chating_profile {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+body .mainContent .chat .chating .you {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+body .mainContent .chat .chating .you .chating_profile {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+body .mainContent .chat .input-chart {
+  height: 5vh;
+  background: #3c4e66;
+}
+/*# sourceMappingURL=index.css.map */
