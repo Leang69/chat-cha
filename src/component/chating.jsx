@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./../style/index.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <title>Chat Cha</title>
-  </head>
-  <body>
-    <div>
+import React from "react";
+import './../style/index.scss';
+
+export default function Chating() {
+  return (
+    <div className="chatingContainer">
       <div class="sideBar">
         <div class="search">
           <p class="title">Chat Cha</p>
@@ -171,7 +153,6 @@
           </div>
         </div>
       </div>
-      <!-- dfasdfadsfa -->
       <div class="mainContent">
         <div class="chat">
           <ul class="chartBar">
@@ -355,5 +336,5 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
+  );
+}

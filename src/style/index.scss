@@ -1,0 +1,215 @@
+.chatingContainer {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  ::-webkit-scrollbar {
+    background: rgb(255, 255, 255);
+    width: 3px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(87, 115, 252);
+    width: 3px;
+  }
+  .sideBar {
+    padding: 0;
+    width: 25vw;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    color: rgb(133, 133, 133);
+
+    .search {
+      width: 22vw;
+      height: 7.5vh;
+      margin: 0 auto;
+      padding: 2vh 1.5vw;
+      display: flex;
+      align-items: center;
+      .title {
+        margin-right: 1vw;
+        margin-bottom: 0;
+        font-size: 50px;
+        font-family: "Pacifico", cursive;
+        font-size: 100%;
+        color: #4eb5dd;
+      }
+      input {
+        padding-left: 10px;
+        flex-grow: 1;
+        height: 100%;
+        border: 1.5px solid rgb(109, 109, 109);
+        border-radius: 10px;
+      }
+    }
+    .chatHistory {
+      height: 92.5vh;
+      overflow-y: scroll;
+      scrollbar-color: rgb(87, 115, 252) rgb(255, 255, 255);
+      scrollbar-width: none;
+      h3 {
+        font-weight: normal;
+        font-size: 22px;
+        color: black;
+      }
+      h4 {
+        font-weight: 100;
+        font-size: 18px;
+        color: rgb(70, 70, 70);
+      }
+      .chatPerson:hover {
+        background-color: #e0f6ff;
+      }
+      .chatPerson.clicked {
+        h3 {
+          font-weight: 600;
+          color: #024d8d;
+        }
+        h4 {
+          color: rgb(0, 0, 0);
+        }
+        background-color: #5cccf873;
+      }
+      .chatPerson {
+        display: flex;
+        margin: 0;
+        padding: 3%;
+        justify-content: left;
+        align-items: center;
+        .chatHistory_profile {
+          height: 50px;
+          width: 50px;
+          margin-right: 2%;
+        }
+        .info {
+          flex-grow: 1;
+          margin-left: 3%;
+          h3 {
+            margin: 0;
+          }
+          h4 {
+            margin: 3% 0 0 0;
+          }
+        }
+      }
+    }
+  }
+  .mainContent {
+    width: 75vw;
+    .chat {
+      .chartBar {
+        background-color: #5cccf8;
+        box-shadow: 0px 2px #5cccf87c;
+        color: rgb(255, 255, 255);
+        display: flex;
+        height: 7.5vh;
+        padding: 0;
+        margin: 0;
+        justify-content: left;
+        align-items: center;
+        list-style: none;
+        .chatPersonProfile {
+          height: 10%;
+          width: 10%;
+        }
+        .chatPersonName {
+          padding: 0 2vw;
+        }
+      }
+      .chating {
+        padding: 1vh 2vw 1vh 2vw;
+        height: 85.5vh;
+        overflow-y: scroll;
+        scrollbar-color: rgb(3, 10, 44) rgb(141, 141, 141);
+        scrollbar-width: none;
+        background-color: rgba(233, 233, 233, 0.425);
+        .chating_profile {
+          width: 25px;
+          height: 25px;
+        }
+        .message {
+          background-color: rgb(255, 255, 255);
+          color: rgb(0, 0, 0);
+          max-width: 50%;
+          min-width: 100px;
+          margin-top: 25px;
+          padding: 10px;
+          border: 1.5px solid #479abb;
+          border-radius: 10px;
+          word-wrap: break-word;
+
+          .header {
+            margin: 0;
+            color: rgb(91, 45, 255);
+          }
+          .content {
+            margin-top: 2px;
+            margin-bottom: 2px;
+          }
+        }
+        .they {
+          display: flex;
+          justify-content: start;
+          .chating_profile {
+            align-self: flex-end;
+          }
+        }
+        .you {
+          display: flex;
+          justify-content: end;
+          flex-direction: row-reverse;
+          .chating_profile {
+            align-self: flex-end;
+          }
+        }
+      }
+      .input-chart {
+        height: 7vh;
+        background: #5cccf8;
+        box-shadow: 0px -2px #5cccf87c;
+        display: flex;
+        padding: 0 2vw;
+        align-items: center;
+        .input-text {
+          flex-grow: 1;
+          border: none;
+          background: #5cccf8;
+          color: rgb(0, 0, 0);
+        }
+        .input-text:focus {
+          outline: none;
+        }
+        ::placeholder {
+          color: rgba(0, 0, 0, 0.75);
+        }
+        .send {
+          border: none;
+          width: 5vh;
+          height: 5vh;
+          background: #5cccf8;
+          color: rgb(255, 255, 255);
+        }
+        .send:active {
+          color: rgb(87, 87, 87);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .chatingContainer {
+    .sideBar {
+      width: 100vw;
+      min-width: 300px;
+      .search {
+        width: 95vw;
+        height: 5vh;
+        margin: 0 auto;
+        padding: 2vh 2.5vw;
+      }
+    }
+    .mainContent {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+html {
+  height: 100vh;
+  body {
+    background-color: #5cccf8;
+    .container-fluid {
+      background-color: #ffffff;
+      border: 3px solid #66d4ff;
+      border-radius: 5px;
+      color: rgb(133, 133, 133);
+      .title {
+        font-family: "Pacifico", cursive;
+        color: #4eb5dd;
+      }
+      .formSignUp {
+        width: 75%;
+        .signup_google {
+          background-color: #fff;
+          border: 1px solid rgb(133, 133, 133);
+          color: rgb(83, 83, 83);
+          img {
+            width: 25px;
+            height: 25px;
+            background-color: #fff;
+            border-radius: 5px;
+          }
+        }
+        .signup_google:hover {
+          background-color: #0d6efd;
+          border: 1px solid rgb(255, 255, 255);
+          color: #fff;
+        }
+        .signup_google:focus {
+          border: 1px solid #0d6efd;
+          box-shadow: 0 0 0 0.2rem #4d94ff;
+        }
+      }
+      @media only screen and (max-width: 576px) {
+        .formSignUp {
+          width: 95%;
+        }
+      }
+      .form-control:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #fff;
+        outline: 0;
+        -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+        box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+}
