@@ -1,0 +1,60 @@
+body {
+  background-color: #5cccf8;
+}
+
+body .container-fluid {
+  background-color: #ffffff;
+  border: 3px solid #66d4ff;
+  border-radius: 5px;
+  color: #858585;
+}
+
+body .container-fluid .title {
+  font-family: "Pacifico", cursive;
+  color: #4eb5dd;
+}
+
+body .container-fluid .formLogin {
+  width: 75%;
+}
+
+body .container-fluid .formLogin .login_google {
+  background-color: #fff;
+  border: 1px solid #858585;
+  color: #535353;
+}
+
+body .container-fluid .formLogin .login_google img {
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+body .container-fluid .formLogin .login_google:hover {
+  background-color: #0d6efd;
+  border: 1px solid white;
+  color: #fff;
+}
+
+body .container-fluid .formLogin .login_google:focus {
+  border: 1px solid #0d6efd;
+  -webkit-box-shadow: 0 0 0 0.2rem #4d94ff;
+          box-shadow: 0 0 0 0.2rem #4d94ff;
+}
+
+@media only screen and (max-width: 576px) {
+  body .container-fluid .formLogin {
+    width: 95%;
+  }
+}
+
+body .container-fluid .form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #fff;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+}
+/*# sourceMappingURL=login.css.map */
