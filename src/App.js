@@ -2,21 +2,25 @@ import Login from './component/login'
 import SignUp from './component/signup'
 import Chating from './component/chating'
 import {Switch, Route} from 'react-router-dom'
-import {actions} from './Redux/Storeage'
+import {useDispatch, useSelector} from 'react-redux'
+import { useEffect } from 'react'
 
-function App(prop) {
-    prop.store.dispatch({
-        type: "loginAction",
-        payload: {
-            token: "Hell/o",
-            isVerify: true,
-            username: "Helllo"}
-    })
+function App() {
+    const storeDispatch = useDispatch()
+    const store_user = useSelector((state) => state.user)
+
+    useEffect(() => {
+        storeDispatch({
+            type: "loginAction",
+            payload: {
+                token: "58344616714dfadsf86asdfa6",
+                isVerify: true,
+                username: "Helllo"}
+        })
+    },[])
+
     return (
         <div className="App">
-            <h1>{prop.store.getState().token}</h1>
-            <h1>{prop.store.getState().isVerify}</h1>
-            <h1>{prop.store.getState().username}</h1>
             <Switch>
                 <Route path="/login"><Login/></Route>
                 <Route path="/signup"><SignUp/></Route>
