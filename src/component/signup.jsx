@@ -1,14 +1,35 @@
 import React from "react";
 import './../style/signUp.scss'
 import google from "./../img/googlelogo.png"
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {useForm} from "react-hook-form";
+import axios from "axios";
+import config from "./../config.json"
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SignUp() {
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const signUphandle = (data) => {
-        console.log(data)
+    const history = useHistory();
+    const storeDispatch = useDispatch()
+    const store_user = useSelector(state => state.user)
+
+    const signUphandle = data => {
+        axios.post(config.url+"api/register",{
+            username: data.username,
+            email: data.email,
+            password: data.password
+        }).then( r => {
+            const message = r.data.message+""
+            if(message.localeCompare("success") === 0){
+                storeDispatch({
+                    type: "setUserCredential",
+                    payload: r.data
+                })
+                history.replace("/chating")
+            }
+        }).catch( e => console.log(e) )
     }
+
     return (
         <div className="container-fluid my-5 p-3 col-lg-6 col-sm-8 col-xs-8 col-10 d-flex flex-column align-items-center">
             <h1 className="title">Chat Cha</h1>

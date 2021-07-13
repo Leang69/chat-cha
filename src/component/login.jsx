@@ -1,14 +1,41 @@
 import React from "react";
 import './../style/login.scss'
 import google from "./../img/googlelogo.png"
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from 'react-redux'
+import axios from "axios";
+import config from "./../config.json"
+import { useState } from "react";
+
 
 export default function Login() {
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const storeDispatch = useDispatch()
+    const store_user = useSelector((state) => state.user)
+    const history = useHistory()
+    const [passwordOrEmailInvalid, setPasswordOrEmailInvalid] = useState(false)
+
     const loginHandle = (data) => {
-        console.log(data)
+        setPasswordOrEmailInvalid(false)
+        axios.post(config.url+"api/login",{
+            email: data.email,
+            password: data.password
+        }).then( r => {
+            console.log(r.data);
+            const message = r.data.message+""
+            if(message.localeCompare("success") === 0){
+                storeDispatch({
+                    type: "setUserCredential",
+                    payload: r.data
+                })
+                history.replace("/chating")
+            }else if (message.localeCompare("email or password is incorrected.") === 0) {
+                setPasswordOrEmailInvalid(true)
+            }
+        }).catch( e => console.log(e) )
     }
+
     return (
         <div>
             <div
@@ -41,6 +68,7 @@ export default function Login() {
                         {errors.password?.type === 'required' &&  <p className="text-danger">Password is require</p>}
                         {errors.password?.type === 'minLength' && <p className="text-danger">Password minimum 8 digit</p>}
                     </div>
+                    {passwordOrEmailInvalid && <p className="text-danger">Email or Password invalid</p>}
                     <p className="mb-3 text-primary text-end">Forget Password</p>
                     <button type="submit" className="d-flex mb-3 justify-content-center btn btn-primary w-100 m-auto">
                         Login
