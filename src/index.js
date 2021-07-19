@@ -5,12 +5,27 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./Redux/Storeage";
+import Echo from "laravel-echo";
+
+window.Pusher = require("pusher-js");
+
+window.Echo = new Echo({
+  broadcaster: "pusher",
+  key: "chatcha12345678broadcast", // hard code
+  wsHost: window.location.hostname,
+  wssHost: window.location.hostname,
+  enabledTransports: ["ws"],
+  wsPort: 6001,
+  forceTLS: false,
+  disableStats: true,
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App/>
+        <App />
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
