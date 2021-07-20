@@ -20,6 +20,7 @@ export default function SignUp() {
   const storeDispatch = useDispatch();
   const store_user = useSelector((state) => state.user);
 
+
   const signUphandle = (data) => {
     setEmailAlreadyUse(false);
     axios

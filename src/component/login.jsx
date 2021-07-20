@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import {requestUserInfo} from "./../Redux/Storeage"
 import config from "./../config.json";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -20,28 +21,30 @@ export default function Login() {
     formState: { errors },
   } = useForm();
   const storeDispatch = useDispatch();
-  const store_user = useSelector((state) => state.userCredential);
+  const store_user = useSelector((state) => state);
   const history = useHistory();
   const [passwordOrEmailInvalid, setPasswordOrEmailInvalid] = useState(false);
   const [googleAuthUrl, setGoogleAuthUrl] = useState(null);
 
   const loginHandle = (data) => {
     setPasswordOrEmailInvalid(false);
+    console.log(config.url + "api/login");
+
     axios
       .post(config.url + "api/login", {
         email: data.email,
         password: data.password,
       })
       .then((r) => {
-        console.log(r.data);
         const message = r.data.message + "";
         if (message.localeCompare("success") === 0) {
           storeDispatch({
             type: "setUserCredential",
             payload: r.data,
           });
+          storeDispatch(requestUserInfo())
           console.log(store_user);
-          history.replace("/chating");
+          // history.replace("/chating");
         } else if (
           message.localeCompare("email or password is incorrected.") === 0
         ) {
@@ -53,7 +56,6 @@ export default function Login() {
 
   useEffect(() => {
     axios.get(config.url + "api/redirect/google").then((r) => {
-      console.log(r.data.url);
       setGoogleAuthUrl(r.data.url);
     });
   }, []);

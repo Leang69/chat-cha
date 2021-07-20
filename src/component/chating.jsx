@@ -1,5 +1,5 @@
 import React from "react";
-import './../style/index.scss';
+import "./../style/index.scss";
 
 export default function Chating() {
   return (
@@ -10,6 +10,16 @@ export default function Chating() {
           <input type="text" placeholder="search" />
         </div>
         <div class="chatHistory">
+          {/* <div class="chatPerson clicked">
+            <img
+              class="chatHistory_profile"
+              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
+            />
+            <div class="info">
+              <h3>Ngounmengleang</h3>
+              <h4>Last: chat</h4>
+            </div>
+          </div>
           <div class="chatPerson">
             <img
               class="chatHistory_profile"
@@ -19,138 +29,7 @@ export default function Chating() {
               <h3>Ngounmengleang</h3>
               <h4>Last: chat</h4>
             </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-          <div class="chatPerson clicked">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
-
-          <div class="chatPerson">
-            <img
-              class="chatHistory_profile"
-              src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-            />
-            <div class="info">
-              <h3>Ngounmengleang</h3>
-              <h4>Last: chat</h4>
-            </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div class="mainContent">
