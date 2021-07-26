@@ -1,10 +1,11 @@
 import React from "react";
 import "./../style/index.scss";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import config from "./../config.json";
+import { requestUserInfo } from "../Redux/Storeage";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Oauth() {
@@ -12,6 +13,7 @@ export default function Oauth() {
   let [tokenIsValid, setTokenIsValid] = useState(false);
   let [ischecking, setIschecking] = useState(false);
   const storeDispatch = useDispatch();
+  const history = useHistory()
   const store_user = useSelector((state) => state.userCredential);
 
 
@@ -27,11 +29,11 @@ export default function Oauth() {
         storeDispatch({
           type: "setUserCredential",
           payload: {
-            token,
-            isVerify: true
+            token
           }
         });
-        setTokenIsValid(true);
+        storeDispatch(requestUserInfo())
+        history.replace("/chating")
       })
       .catch((e) => {
         setTokenIsValid(false);

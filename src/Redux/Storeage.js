@@ -19,6 +19,9 @@ const initStore = {
 };
 
 const actions = {
+  loadStateFromSessionStorage: (actionPayload) => {
+    return actionPayload
+  },
   setUserCredential: (store, actionPayload) => {
     return {
       ...store,
@@ -59,7 +62,8 @@ const reducer = (store = initStore, action) => {
       return actions.setUserCredential(store, action.payload);
     case "setUserInfo":
       return actions.setUserInfo(store, action.payload);
-    
+    case "loadStateFromSessionStorage":
+      return actions.loadStateFromSessionStorage(action.payload)
     default:
       return store;
   }

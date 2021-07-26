@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import config from "./../config.json";
 import { useDispatch, useSelector } from "react-redux";
+import {requestUserInfo} from "./../Redux/Storeage"
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -30,12 +31,6 @@ export default function SignUp() {
           username: data.username,
           email: data.email,
           password: data.password,
-        },
-        {
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-            "X-CSRFToken": document.cookie.replace("XSRF-TOKEN=", ""),
-          },
         }
       )
       .then((r) => {
@@ -44,6 +39,7 @@ export default function SignUp() {
             type: "setUserCredential",
             payload: r.data,
           });
+          storeDispatch(requestUserInfo())
           history.replace("/chating");
         } else if (
           String(r.data.message.email).localeCompare("email is already use") ===

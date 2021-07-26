@@ -44,7 +44,7 @@ export default function Login() {
           });
           storeDispatch(requestUserInfo())
           console.log(store_user);
-          // history.replace("/chating");
+          history.replace("/chating");
         } else if (
           message.localeCompare("email or password is incorrected.") === 0
         ) {

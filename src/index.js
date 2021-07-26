@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./Redux/Storeage";
 import Echo from "laravel-echo";
+import SessionStorage from "./component/sessionStorage";
 
 window.Pusher = require("pusher-js");
 
@@ -20,12 +21,13 @@ window.Echo = new Echo({
   disableStats: true,
 });
 
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <SessionStorage>
+          <App />
+        </SessionStorage>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

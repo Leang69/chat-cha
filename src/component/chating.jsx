@@ -1,7 +1,26 @@
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import "./../style/index.scss";
+import config from "./../config.json";
+import { useSelector } from "react-redux";
 
 export default function Chating() {
+  const userCredential =  useSelector( state => state.userCredential)
+
+  useEffect(( ) => {
+    console.log("Helllo","Bearer " + userCredential.token);
+    axios.get(config.url+"api/get-massage-history",{
+      headers: {
+        Authorization: "Bearer " + userCredential.token,
+      }
+    }).then( r => {
+      console.log(r.data);
+    }).catch( e => {
+
+    })
+  },[userCredential])
+
   return (
     <div className="chatingContainer">
       <div class="sideBar">
