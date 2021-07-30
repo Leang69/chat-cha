@@ -16,11 +16,40 @@ const initStore = {
     userFrom: null,
     email_verified_at: null,
   },
+  chatHistory: [],
+  chatting: {
+    partner: null,
+    conversation: []
+  }
 };
 
 const actions = {
   loadStateFromSessionStorage: (actionPayload) => {
     return actionPayload
+  },
+  setChatHistory: (store, actionPayload) => {
+    return {
+      ...store,
+      chatHistory: [...actionPayload],
+    }
+  },
+  setChattingPartner: (store, actionPayload) => {
+    return {
+      ...store,
+      chatting: {
+        partner: actionPayload,
+        conversation: store.chatting.conversation
+      }
+    }
+  },
+  setChattingConversation: (store, actionPayload) => {
+    return {
+      ...store,
+      chatting: {
+        conversation: actionPayload,
+        partner: store.chatting.partner
+      }
+    }
   },
   setUserCredential: (store, actionPayload) => {
     return {
@@ -39,11 +68,11 @@ const actions = {
   requestUserInfo: () => {
     return (dispatch, getState) => {
       return axios.get(config.url + "api/user", {
-          headers: {
-            Authorization: "Bearer " + getState().userCredential.token,
-          },
-        })
-        .then((r) => {  
+        headers: {
+          Authorization: "Bearer " + getState().userCredential.token,
+        },
+      })
+        .then((r) => {
           dispatch({
             type: "setUserInfo",
             payload: r.data,
@@ -53,13 +82,19 @@ const actions = {
           console.log(e);
         });
     };
-  },
+  }
 };
 
 const reducer = (store = initStore, action) => {
   switch (action.type) {
     case "setUserCredential":
       return actions.setUserCredential(store, action.payload);
+    case "setChatHistory":
+      return actions.setChatHistory(store, action.payload);
+    case "setChattingPartner":
+      return actions.setChattingPartner(store, action.payload);
+    case "setChattingConversation":
+      return actions.setChattingConversation(store, action.payload);
     case "setUserInfo":
       return actions.setUserInfo(store, action.payload);
     case "loadStateFromSessionStorage":
@@ -69,7 +104,7 @@ const reducer = (store = initStore, action) => {
   }
 };
 
-export const requestUserInfo =  actions.requestUserInfo;
+export const requestUserInfo = actions.requestUserInfo;
 
 export const store = createStore(
   reducer,

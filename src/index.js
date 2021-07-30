@@ -5,21 +5,37 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./Redux/Storeage";
-import Echo from "laravel-echo";
 import SessionStorage from "./component/sessionStorage";
 
 window.Pusher = require("pusher-js");
 
-window.Echo = new Echo({
-  broadcaster: "pusher",
-  key: "chatcha12345678broadcast", // hard code
-  wsHost: window.location.hostname,
-  wssHost: window.location.hostname,
-  enabledTransports: ["ws"],
-  wsPort: 6001,
-  forceTLS: false,
-  disableStats: true,
-});
+
+
+// window.Echo = new Echo({
+//   broadcaster: "pusher",
+//   cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//   key: "chatcha12345678broadcast",
+//   encrypted: true,
+//   key: process.env.MIX_PUSHER_APP_KEY,
+//   authorizer: (channel, options) => {
+//       return {
+//           authorize: (socketId, callback) => {
+//               axios.post('/api/broadcasting/auth', {
+//                   socket_id: socketId,
+//                   channel_name: channel.name
+//               })
+//               .then(response => {
+//                   callback(false, response.data);
+//                   console.log();
+//               })
+//               .catch(error => {
+//                   callback(true, error);
+//               });
+//           }
+//       };
+//   },
+// })
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,25 +1,80 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import "./../style/index.scss";
 import config from "./../config.json";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import ChatListHistory from "./chatListHistory";
+import Conversation from "./conversation";
+import Echo from "laravel-echo";
 
 export default function Chating() {
-  const userCredential =  useSelector( state => state.userCredential)
+  const userCredential = useSelector((state) => state.userCredential);
+  const userInfo = useSelector((state) => state.userInfo);
+  const dispatch = useDispatch();
 
-  useEffect(( ) => {
-    console.log("Helllo","Bearer " + userCredential.token);
-    axios.get(config.url+"api/get-massage-history",{
-      headers: {
-        Authorization: "Bearer " + userCredential.token,
-      }
-    }).then( r => {
-      console.log(r.data);
-    }).catch( e => {
+  useEffect(() => {
+    if (userCredential.token) {
+      axios
+        .get(config.url + "api/get-massage-history", {
+          headers: {
+            Authorization: "Bearer " + userCredential.token,
+          },
+        })
+        .then((r) => {
+          dispatch({ type: "setChatHistory", payload: r.data.message });
+        })
+        .catch((e) => {});
+    }
+  }, [userCredential]);
 
-    })
-  },[userCredential])
+  useEffect(() => {
+    if(userInfo.id){
+      window.Echo = new Echo({
+        broadcaster: "pusher",
+        key: "chatcha12345678broadcast",
+        wsHost: window.location.hostname,
+        wssHost: window.location.hostname,
+        enabledTransports: ["ws"],
+        wsPort: 6001,
+        forceTLS: false,
+        disableStats: true,
+        authorizer: () => {
+          return {
+            authorize: (socketId, callback) => {
+              axios
+                .post(
+                  config.url + "api/broadcasting/auth",
+                  {
+                    socket_id: socketId,
+                    channel_name: "private-messageSession." + userInfo.id,
+                  },
+                  {
+                    headers: {
+                      Authorization: "Bearer " + userCredential.token,
+                    },
+                  }
+                )
+                .then((response) => {
+                  callback(false, response.data);
+                  console.log("web socket auth", response.data);
+                })
+                .catch((error) => {
+                  callback(true, error);
+                });
+            },
+          };
+        },
+      });
+  
+      window.Echo.private(`messageSession.${userInfo.id}`).listen(
+        "SendNewMessage",
+        (e) => {
+          console.log("web socket", e);
+        }
+      );
+    }
+  },[userInfo])
 
   return (
     <div className="chatingContainer">
@@ -29,6 +84,8 @@ export default function Chating() {
           <input type="text" placeholder="search" />
         </div>
         <div class="chatHistory">
+          <ChatListHistory />
+
           {/* <div class="chatPerson clicked">
             <img
               class="chatHistory_profile"
@@ -52,186 +109,7 @@ export default function Chating() {
         </div>
       </div>
       <div class="mainContent">
-        <div class="chat">
-          <ul class="chartBar">
-            <li class="chatPersonName">NgounMengleang</li>
-          </ul>
-          <div class="chating">
-            <div class="you">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="content">Hello</p>
-              </div>
-            </div>
-
-            <div class="they">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="header">Song</p>
-                <p class="content">
-                  Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-                </p>
-              </div>
-            </div>
-
-            <div class="you">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="content">Hello</p>
-              </div>
-            </div>
-
-            <div class="they">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="header">Song</p>
-                <p class="content">Hi</p>
-              </div>
-            </div>
-            <div class="you">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="content">Hello</p>
-              </div>
-            </div>
-
-            <div class="they">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="header">Song</p>
-                <p class="content">Hi</p>
-              </div>
-            </div>
-            <div class="you">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="content">Hello</p>
-              </div>
-            </div>
-
-            <div class="they">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="header">Song</p>
-                <p class="content">Hi</p>
-              </div>
-            </div>
-            <div class="you">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="content">Hello</p>
-              </div>
-            </div>
-
-            <div class="they">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="header">Song</p>
-                <p class="content">Hi</p>
-              </div>
-            </div>
-            <div class="you">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="content">Hello</p>
-              </div>
-            </div>
-
-            <div class="they">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="header">Song</p>
-                <p class="content">Hi</p>
-              </div>
-            </div>
-            <div class="you">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="content">Hello</p>
-              </div>
-            </div>
-
-            <div class="they">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="header">Song</p>
-                <p class="content">Hi</p>
-              </div>
-            </div>
-            <div class="you">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="content">Hello</p>
-              </div>
-            </div>
-
-            <div class="they">
-              <img
-                class="chating_profile"
-                src="https://www.shareicon.net/data/256x256/2016/07/26/802033_user_512x512.png"
-              />
-              <div class="message">
-                <p class="header">Song</p>
-                <p class="content">Hi</p>
-              </div>
-            </div>
-          </div>
-          <div class="input-chart">
-            <input
-              class="input-text"
-              placeholder="write a massage..."
-              type="text"
-            />
-            <button class="send">
-              <span class="material-icons"> send </span>
-            </button>
-          </div>
-        </div>
+        <Conversation />
       </div>
     </div>
   );

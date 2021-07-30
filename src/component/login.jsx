@@ -11,9 +11,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Login() {
-  window.Echo.channel("ChatChaGoogleAuth").listen("GoogleAcclogin", (e) => {
-    console.log(e);
-  });
 
   const {
     register,
